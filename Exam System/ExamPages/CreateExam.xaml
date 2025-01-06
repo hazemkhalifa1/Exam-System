@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Exam_System.ExamPages"
+             x:Class="Exam_System.CreateExam"
+             Title="انشاء امتحان">
+    <ContentPage.BindingContext>
+        <local:CreateExamViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView >
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <!-- اسم الفئة -->
+            <Label Text="اسم الامتحان" FontSize="Medium" HorizontalTextAlignment="End" />
+            <Entry Text="{Binding ExamName}" Placeholder="ادخل اسم الامتحان" HorizontalTextAlignment="End" />
+
+            <!-- قائمة الأسئلة -->
+            <Label Text="الاقسام المختاره" FontSize="Medium" HorizontalTextAlignment="End" />
+            <VerticalStackLayout Spacing="10">
+                <Label Text="القسم" FontSize="Medium" HorizontalTextAlignment="End" />
+                <Picker Title="اختر القسم"
+                    HorizontalTextAlignment="End"
+                        ItemsSource="{x:Binding Categories}"
+                        ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedCategory, Mode=TwoWay}" />
+                <Label Text="عدد الاسأله" FontSize="Medium" HorizontalTextAlignment="End" />
+                <Entry Text="{Binding NumOfQ}" Placeholder="ادخل عدد الاسأله" HorizontalTextAlignment="End"  Keyboard="Numeric"/>
+                <!-- اختيار المستوى -->
+                <Label Text="اختر المستوي" FontSize="Medium" HorizontalTextAlignment="End" />
+                <Picker Title="اختر المستوي"
+                        HorizontalTextAlignment="End"
+                        ItemsSource="{Binding Levels}"
+                        SelectedItem="{Binding SelectedLevel}" />
+
+                <!-- زر الإضافة -->
+                <Button Text="اضافه قسم"
+                    Command="{Binding AddCategoryCommand}" />
+            </VerticalStackLayout>
+
+            <!-- عرض قائمة الأسئلة -->
+            <CollectionView ItemsSource="{Binding SelectedCategores}" HeightRequest="400">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="10" Spacing="5" BackgroundColor="#f0f0f0">
+                            <Label Text="{Binding CategoryName}" FontAttributes="Bold" HorizontalTextAlignment="End"/>
+                            <Label Text="{Binding NumberOfQuestions}" HorizontalTextAlignment="End"/>
+                            <Label Text="{Binding DegreePerQuestion}" HorizontalTextAlignment="End"/>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- زر الحفظ -->
+            <Button Text="حفظ"
+                Command="{Binding SubmitCommand}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

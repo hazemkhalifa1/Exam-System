@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"   
+             xmlns:local="clr-namespace:Exam_System.AccountPages"
+             x:Class="Exam_System.AccountPages.UsersPage"
+             Title="جدول المستخدمين">
+    <ContentPage.BindingContext>
+        <local:UserListViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout Spacing="10" Padding="20">
+        <ScrollView >
+            <CollectionView ItemsSource="{Binding Users}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="تعديل"
+                               BackgroundColor="LightGreen"
+                               Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.EditCommand}"
+                               CommandParameter="{Binding .}" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Frame BorderColor="Gray"
+                   Padding="10"
+                   Margin="5"
+                   CornerRadius="5">
+                                <StackLayout>
+                                    <Label Text="{Binding Username}" FontSize="20" HorizontalTextAlignment="End"/>
+                                    <Label Text="{Binding Role}" FontSize="15" TextColor="Gray" HorizontalTextAlignment="End"/>
+                                </StackLayout>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

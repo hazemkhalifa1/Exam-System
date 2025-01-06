@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Exam_System.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Exam_System"
+    xmlns:local1="clr-namespace:Exam_System.AccountPages"
+    xmlns:local2="clr-namespace:Exam_System.CategoryPage"
+    Title="Exam_System"
+    FlyoutBehavior="Flyout" FlyoutHeaderBehavior="Fixed" FlyoutVerticalScrollMode="Auto">
+
+    <ShellContent
+        Title="Exams"
+        ContentTemplate="{DataTemplate local:ExamsTable}"
+        Route="ExamsTable" />
+    <FlyoutItem Title="Category" >
+            <ShellContent ContentTemplate="{DataTemplate local2:CategoryTable}" />
+        </FlyoutItem>
+
+    <FlyoutItem Title="Users" >
+        <ShellContent ContentTemplate="{DataTemplate local1:UsersPage}" />
+    </FlyoutItem>
+
+</Shell>

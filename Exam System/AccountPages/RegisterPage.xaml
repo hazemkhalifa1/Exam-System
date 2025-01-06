@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Exam_System.AccountPages"
+             x:Class="Exam_System.AccountPages.RegisterPage"
+             Title="انشاء حساب">
+    <ContentPage.BindingContext>
+        <vm:RegisterViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+            <!-- Username Entry -->
+            <Label Text="اسم المستخدم" FontSize="18" HorizontalTextAlignment="End" />
+            <Entry Text="{Binding Username}" Placeholder="ادخل اسم المستخدم الخاص بك" HorizontalTextAlignment="End"/>
+
+            <!-- Email Entry -->
+            <Label Text="الايميل" FontSize="18" HorizontalTextAlignment="End"/>
+            <Entry Text="{Binding Email}" Placeholder="ادخل الايميل الخاص بك" Keyboard="Email" HorizontalTextAlignment="End"/>
+
+            <!-- Password Entry -->
+            <Label Text="الباسورد" FontSize="18" HorizontalTextAlignment="End"/>
+            <Entry Text="{Binding Password}" Placeholder="ادخل الباسورد الخاص بك" IsPassword="True" HorizontalTextAlignment="End"/>
+
+            <!-- Confirm Password Entry -->
+            <Label Text="تأكيد الباسورد" FontSize="18" HorizontalTextAlignment="End"/>
+            <Entry Text="{Binding ConfirmPassword}" Placeholder="تأكيد الباسورد الخاص بك" IsPassword="True" HorizontalTextAlignment="End"/>
+
+            <!-- Register Button -->
+            <Button Text="انشاء" Command="{Binding RegisterCommand}" TextColor="White" />
+
+            <!-- Error Message -->
+            <Label Text="{Binding ErrorMessage}" TextColor="Red" IsVisible="{Binding IsErrorVisible}" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

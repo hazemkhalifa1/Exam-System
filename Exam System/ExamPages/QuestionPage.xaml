@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Exam_System.ExamPages"
+             x:Class="Exam_System.ExamPages.QuestionPage"
+             Title="Question">
+    <ContentPage.BindingContext>
+        <vm:QuestionViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <VerticalStackLayout Padding="10">
+            <!-- Display the question body -->
+            <Label Text="{Binding Body}" FontSize="24" VerticalOptions="CenterAndExpand" />
+
+            <!-- Entry for user answer -->
+            <Entry Placeholder="Enter your answer here" Text="{Binding Answer}" FontSize="18" />
+
+            <!-- Next button -->
+            <Button Text="{Binding ButtonText}" Command="{Binding NextCommand}" />
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>

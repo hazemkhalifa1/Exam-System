@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Exam_System.CategoryPage"
+             x:Class="Exam_System.CategoryPage.CategoryTable"
+             Title="قائمه الاقسام">
+    <StackLayout Padding="20" Spacing="10">
+        <Button Text="اضافه قسم"
+                IsVisible="{Binding IsAdmin}"
+                Command="{Binding CreateCommand}"
+                HorizontalOptions="Center"
+                Margin="10" />
+    <ScrollView>
+            <CollectionView ItemsSource="{Binding Categories}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="تعديل"
+                                   BackgroundColor="LightGreen"
+                                   Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.EditCommand}"
+                                   CommandParameter="{Binding .}" />
+                                    <SwipeItem Text="حذف"
+                                   BackgroundColor="LightPink"
+                                   Command="{Binding Source={RelativeSource AncestorType={x:Type CollectionView}}, Path=BindingContext.RemoveCommand}"
+                                   CommandParameter="{Binding .}" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Frame BorderColor="Gray"
+                       Padding="10"
+                       Margin="5"
+                       CornerRadius="5">
+                                <StackLayout>
+                                    <Label Text="{Binding Name}" FontSize="20" HorizontalTextAlignment="End"/>
+                                    <Label Text="{Binding QuestionCount}" FontSize="15" TextColor="Gray" HorizontalTextAlignment="End"/>
+                                </StackLayout>
+                            </Frame>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

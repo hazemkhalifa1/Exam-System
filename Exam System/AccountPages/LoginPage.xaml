@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Exam_System.AccountPages"
+             x:Class="Exam_System.AccountPages.LoginPage"
+             Title="Login">
+
+    <ContentPage.BindingContext>
+        <local:LoginViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="30" Spacing="15" VerticalOptions="Center" >
+        <!-- Email or Username -->
+        <Label Text="اسم المستخدم" FontSize="Medium" HorizontalOptions="End" />
+        <Entry Text="{Binding Username}" Placeholder="ادخل اسم المستخدم" Keyboard="Email" HorizontalTextAlignment="End" />
+
+        <!-- Password -->
+        <Label Text="الباسورد" FontSize="Medium" HorizontalOptions="End" />
+        <Entry Text="{Binding Password}" Placeholder="ادخل الباسورد" IsPassword="True" HorizontalTextAlignment="End"/>
+
+        <!-- Login Button -->
+        <Button Text="تسجيل الدخول" Command="{Binding LoginCommand}" />
+
+        <!-- Error Message -->
+        <Label Text="{Binding ErrorMessage}" TextColor="Red" FontSize="Small" IsVisible="{Binding IsErrorVisible}" />
+
+        <!-- Register Link -->
+        <HorizontalStackLayout HorizontalOptions="Center" >
+            <Label Text="  انشاء حساب" TextColor="Blue" FontAttributes="Bold" HorizontalTextAlignment="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding NavigateToRegisterCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Text="ليس لديك حساب؟" HorizontalTextAlignment="End"/>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
